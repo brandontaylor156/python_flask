@@ -1,0 +1,29 @@
+{% extends "bootstrap/base.html" %} 
+
+{% block title %}User Table{% endblock %} 
+
+{% block styles %}
+    {{super()}}
+{% endblock %}
+
+{% block content %}
+<table class="table">
+  <thead class="thead">
+    <tr>
+      <th scope="col">First Name</th>
+      <th scope="col">Last Name</th>
+      <th scope="col">Full Name</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for user in users: %}
+    <tr>
+      {% for value in user.values() %}
+      <td>{{value}}</td>
+      {% endfor %}
+      <td>{{user['first_name']}} {{user['last_name']}}</td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% endblock %}

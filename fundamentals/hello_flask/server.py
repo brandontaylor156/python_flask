@@ -18,10 +18,9 @@ def sayName(name):
 def sayWord(number, word):
     return word*number
 
-@app.route('/<anything>')
-def errorMessage(anything):
-    if anything != 'dojo' and not anything.startswith('say/<string:name>') and not anything.startswith('repeat/<int:number>/<string:word>'):
-        return "Sorry! No response"
+@app.errorhandler(404)
+def handle_bad_request(e):
+    return 'bad request!'
 
 
 if __name__=="__main__":

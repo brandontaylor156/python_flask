@@ -1,0 +1,26 @@
+{% extends "base.html" %} 
+
+{% block title %}Times Visited{% endblock %} 
+
+{% block content %}
+<div class="container mt-5 p-5 text-center bg-primary bg-gradient">
+  <h1 class="display-1">Count</h1>
+  <p class="display-6">{{session['times_visited']}} time(s)</p>
+  <p class="display-6 text-danger">Actually visited {{session['times_actually_visited']}} time(s)</p>
+
+  <div class="buttons d-inline-flex gap-5">
+    <form action='/plus_two' method='post'>
+      <button>Add Two</button>
+    </form>
+    <form action='/destroy_session' method='get'>
+      <button>Reset</button>
+    </form>
+    <form action='/plus_increment' method='post'>
+      <input type="number" min="1" placeholder="1" name="num_times" required>
+      <button>Choose Increment</button>
+    </form>
+  </div>
+
+
+</div>
+{% endblock %}

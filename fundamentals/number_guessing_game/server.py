@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, redirect, session
+frm flask import Flask, render_template, request, redirect, session
 import random, sys
 app= Flask(__name__)
 app.secret_key = 'brando'

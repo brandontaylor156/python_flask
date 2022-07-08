@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+
+{% block title %}Results{% endblock %} 
+
+{% block content %}
+<div class="container w-50 p-5 mt-5 gradient-custom">
+    <h1 class="display-3 p-3">Submitted Info</h1>
+    <div class="row p-3">
+        <div class="col-6">Name:</div>
+        <div class="col-6">{{name}}</div>
+    </div>
+    <div class="row p-3">
+        <div class="col-6">Location:</div>
+        <div class="col-6">{{location}}</div>
+    </div>
+    <div class="row p-3">
+        <div class="col-6">Language:</div>
+        <div class="col-6">{{language}}</div>
+    </div>
+    <div class="row p-3">
+        <div class="col-6">Comments:</div>
+        <div class="col-6">{{comment}}</div>
+    </div>
+    <div class="row p-3">
+        <div class="col-6">Fun Level:</div>
+        <div class="col-6">{{level}}</div>
+    </div>
+    <div class="row p-3">
+        <div class="col-6"><a href="/"><button class="btn btn-primary">Go Back</button></a></div>
+    </div>
+</div>
+{% endblock %}

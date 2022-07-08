@@ -1,0 +1,75 @@
+{% extends "base.html" %} 
+
+{% block title %}Dojo Survey{% endblock %} 
+
+{% block content %}
+<div class="container w-50 p-5 mt-5 gradient-custom">
+  <form action="/submit_form" method="post">
+    <h1 class="display-3">Dojo Survey</h1>
+    <div class="form-group p-3">
+      <label for="your_name">Name</label>
+      <input type="text" class="form-control" id="your_name" name="your_name" aria-describedby="emailHelp" required>
+    </div>
+    <div class="form-group p-3">
+      <label for="your_location">Dojo Location</label>
+      <select class="form-control" id="your_location" name="your_location" required>
+        <option value="" disabled selected>Select your location</option>
+        <option>Chicago</option>
+        <option>Burbank</option>
+        <option>Seattle</option>
+        <option>Bellevue</option>
+        <option>Online</option>
+      </select>
+    </div>
+    <div class="form-group p-3">
+      <label for="your_language">Favorite Language</label>
+      <select class="form-control" id="your_language" name="your_language" required>
+        <option value="" disabled selected>Select your language</option>
+        <option>Python</option>
+        <option>JavaScript</option>
+        <option>Java</option>
+        <option>HTML</option>
+        <option>CSS</option>
+      </select>
+    </div>
+    <div class="form-group p-3">
+      <label for="comment" class="form-label">Comment (optional)</label>
+      <textarea class="form-control" id="comment" name="comment" rows="3"></textarea>
+    </div>
+    <div class="form-group p-3">
+      <label for="radioButtons" class="form-label">Having fun?</label>
+      <div class="form-check form-check-inline">
+        <input class="form-check-input" type="radio" name="fun_level" id="inlineRadio1" value="Super High" required>
+        <label class="form-check-label" for="inlineRadio1">Somewhat</label>
+      </div>
+      <div class="form-check form-check-inline">
+        <input class="form-check-input" type="radio" name="fun_level" id="inlineRadio2" value="Ridiculously High">
+        <label class="form-check-label" for="inlineRadio2">Yes</label>
+      </div>
+      <div class="form-check form-check-inline">
+        <input class="form-check-input" type="radio" name="fun_level" id="inlineRadio3" value="Unfathomably High">
+        <label class="form-check-label" for="inlineRadio3">YES</label>
+      </div>
+    </div>
+    <div class="form-group p-3">
+      <label for="checkBoxes" class="form-label">Check any that apply (optional): </label>
+      <div class="form-check form-check-inline">
+        <input class="form-check-input" type="checkbox" id="inlineCheckbox1" name="spirit_animal[]" value="Ninja" />
+        <label class="form-check-label" for="inlineCheckbox1">Ninja</label>
+      </div>
+      
+      <div class="form-check form-check-inline">
+        <input class="form-check-input" type="checkbox" id="inlineCheckbox2" name="spirit_animal[]" value="Cat" />
+        <label class="form-check-label" for="inlineCheckbox2">Cat</label>
+      </div>
+      
+      <div class="form-check form-check-inline">
+        <input class="form-check-input" type="checkbox" id="inlineCheckbox3" name="spirit_animal[]" value="Dog" />
+        <label class="form-check-label" for="inlineCheckbox3">Dog</label>
+      </div>      
+    </div>
+    <button type="submit" class="btn btn-primary m-3">Submit</button>
+  </form>
+</div>
+
+{% endblock %}

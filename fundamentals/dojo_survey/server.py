@@ -13,8 +13,8 @@ def submit_form():
     session['language'] = request.form['your_language']
     session['comment'] = request.form['comment']
     session['level'] = request.form['fun_level']
-    if 'spirit_animal[]' in request.form:
-            session['spirit_animal'] = request.form['spirit_animal[]']
+    if 'spirit_animal' in request.form:
+            session['spirit_animal'] = request.form.getlist('spirit_animal')
     return redirect('/result')
 
 @app.route('/result')
@@ -23,9 +23,16 @@ def result():
     location = session['location']
     language = session['language']
     comment = session['comment']
+    if comment == "":
+        comment = 'None'
     level = session['level']
     if 'spirit_animal' in session:
-        spirit_animal = session['spirit_animal']
+        spirit_animal = ""
+        for animal in session['spirit_animal']:
+             spirit_animal += animal + ", "
+        spirit_animal = spirit_animal[:-2]
+    else:
+        spirit_animal = 'None'
     session.clear()
     return render_template("result.html", name=name, location=location, language=language, comment=comment, level=level, animal=spirit_animal)
 

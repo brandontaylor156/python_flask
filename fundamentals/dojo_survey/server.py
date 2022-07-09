@@ -1,4 +1,4 @@
-frm flask import Flask, render_template, request, redirect, session
+from flask import Flask, render_template, request, redirect, session
 app= Flask(__name__)
 app.secret_key = 'brando'
 
@@ -14,8 +14,7 @@ def submit_form():
     session['comment'] = request.form['comment']
     session['level'] = request.form['fun_level']
     if 'spirit_animal[]' in request.form:
-        print(request.form['spirit_animal'])
-        print('yayayaya')
+            session['spirit_animal'] = request.form['spirit_animal[]']
     return redirect('/result')
 
 @app.route('/result')
@@ -25,8 +24,10 @@ def result():
     language = session['language']
     comment = session['comment']
     level = session['level']
+    if 'spirit_animal' in session:
+        spirit_animal = session['spirit_animal']
     session.clear()
-    return render_template("result.html", name=name, location=location, language=language, comment=comment, level=level)
+    return render_template("result.html", name=name, location=location, language=language, comment=comment, level=level, animal=spirit_animal)
 
 
 if __name__=="__main__":

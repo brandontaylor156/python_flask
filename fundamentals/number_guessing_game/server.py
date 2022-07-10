@@ -8,13 +8,21 @@ def count():
     if 'random_num' not in session or 'times_guessed' not in session:
         session['random_num'] = random.randint(1,100)
         session['times_guessed'] = 0
-        print(session['times_guessed'])
-    
+        session['successful'] = False
     return render_template("index.html")
 
 @app.route('/make_guess', methods=['POST'])
 def make_guess():
+    if session['successful'] == True:
+        session['times_guessed'] = 0
+        session['random_num'] = random.randint(1,100)
+        session['successful'] = False
+        
+    print(session['random_num'])
     session['times_guessed'] += 1
+    if session['times_guessed'] == 5:
+        return redirect('/lose')
+
     if int(request.form['user_guess'])==session['random_num']:
         return redirect('/success')
     elif int(request.form['user_guess']) < session['random_num']:
@@ -22,11 +30,16 @@ def make_guess():
     else:
         return redirect('/too_high')
 
+@app.route('/lose')
+def lose():
+    session['times_guessed'] = 0
+    session['random_num'] = random.randint(1,100)
+    return render_template("index.html", result="You lose!", color='danger')
+
 @app.route('/success')
 def success():
     guesses = session['times_guessed']
-    session['random_num'] = random.randint(1,100)
-    session['times_guessed'] = 0
+    session['successful']=True
     return render_template("index.html", result="Success!", color='success', guesses=guesses)
 
 @app.route('/too_low')

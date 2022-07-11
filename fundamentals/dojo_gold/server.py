@@ -5,15 +5,17 @@ app.secret_key = 'brando'
 
 @app.route('/')
 def index(): 
+    if 'game_over' not in session:
+        session['game_over'] = False
+    
     if session['game_over'] == True:
             session.clear()
 
-    if 'gold_amount' not in session or 'activity_log' not in session or 'moves_left' not in session or 'target' not in session or 'game_over' not in session:
+    if 'gold_amount' not in session or 'activity_log' not in session or 'moves_left' not in session or 'target' not in session:
         session['gold_amount'] = 0
         session['activity_log'] = ""
         session['moves_left'] = 15
         session['target'] = 200
-        session['game_over'] = False
 
     return render_template("index.html")
 
